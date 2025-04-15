@@ -75,7 +75,6 @@ for bat_x, bat_y in test_batch:
     print(bat_y.shape)
     break
 
-# 获取真实值
 y_true = data_y[time_window:]
 
 y_true_train = y_true[0:trainnum + time_step - 1]
