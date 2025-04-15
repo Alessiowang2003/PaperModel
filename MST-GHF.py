@@ -145,7 +145,7 @@ class DARNN_Encoder(nn.Module):
         enc_outputs = []
 
         for t in range(x.size(1)):
-            input_weights = self.input_attention(x[:, -time_window+t:, :], h)  # 时间窗口为96
+            input_weights = self.input_attention(x[:, -time_window+t:, :], h) 
             weighted_input = torch.mul(input_weights, x[:, -time_window+t:, :])
             h, c = self.lstm(weighted_input.mean(dim=1), (h, c))
             h = self.dropout(h)
@@ -413,8 +413,7 @@ def train(trial, params, model):
         
         avg_train_loss = sum_train_loss / len(train_batch)
         print(r'avg_train_loss: {:.5f}'.format(avg_train_loss))
-        
-        #所有的训练误差
+
         all_train_loss = calculate_loss(train_true_sum, train_pred_sum)
         print(r"Train all_loss: ",all_train_loss) 
         
